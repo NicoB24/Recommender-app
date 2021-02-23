@@ -1,0 +1,88 @@
+<!-- templates/index.html -->
+<html>
+  <style>
+    h1 {text-align: center;}
+    img {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+    }
+  </style>
+  <body style="background-color:#36a6ce;">
+    <br><br>
+
+    <h1>Recommender System</h1>
+    <br>
+    
+    <img src="http://webindiasolutions.biz/webindiasolutions.co.in/predmac/wp-content/uploads/2019/06/Recommender-systems.jpg" width="400px">
+
+    <br><br>
+    <br><br>
+
+    <h3>Insert item to search 🔎</h3>
+
+    <p>Value (encoded) between 1 and 14025 :</p>
+    
+    <br><br>
+
+    Encoded Item: <input type="text" id="item_1"/><br>
+    
+    Info: <div id="item_base"></div>
+      
+    <br><br>
+      
+    <button id="predict">Predict</button>
+      
+      
+    <br><br>
+      
+    ➡️ Item #1: <b><div id="item_reco_1"></div></b>
+    <br>
+    ➡️ Item #2: <b><div id="item_reco_2"></div></b>
+    <br>
+    ➡️ Item #3: <b><div id="item_reco_3"></div></b>
+    
+    <br><br>
+
+    <script>
+      var button = document.getElementById('predict');
+
+      var item_1 = document.getElementById('item_1');
+      var item_base = document.getElementById('item_base');
+      
+      var item_reco_1 = document.getElementById('item_reco_1');
+      var item_reco_2 = document.getElementById('item_reco_2');
+      var item_reco_3 = document.getElementById('item_reco_3');
+      
+      
+
+      button.addEventListener('click', function () {
+        var jsonData = {
+          item_1: item_1.value
+        }
+
+        console.log(JSON.stringify(jsonData))
+
+        fetch('https://1f55f8c45339.ngrok.io/predict', {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: 'post',
+          body: JSON.stringify(jsonData)
+        }).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          console.log(data);
+          item_base.innerHTML = data['item_base'];
+          item_reco_1.innerHTML = data['item_reco_1'];
+          item_reco_2.innerHTML = data['item_reco_2'];
+          item_reco_3.innerHTML = data['item_reco_3'];
+        });
+
+      });
+
+    </script>
+
+  </body>
+</html>
