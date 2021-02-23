@@ -4,7 +4,7 @@ Simple recommender system API with Flask using the embedding layer of the follow
 
 ## Installation 📋
 
-_To run this API, install the libraries running this:_
+_Install the libraries running this:_
 
 ```
 pip3 install -r requirements.txt
