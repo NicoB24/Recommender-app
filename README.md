@@ -15,4 +15,4 @@ pip3 install -r requirements.txt
 ```
 
 ## Run 🚀
-To run the app, just execute ___init__.py_
+To run the app, just execute __ init __ .py
